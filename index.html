@@ -1,0 +1,1099 @@
+<!DOCTYPE html>
+
+<html lang="su">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta name="theme-color" content="#713b45">
+
+<title>MPI Novel — Patepung di Bandung | Kelas IX</title>
+
+<style>
+
+:root{
+
+ --wine:#713b45;--wine2:#8b4d56;--terracotta:#a65d52;--cream:#f8f3eb;
+
+ --paper:#fffdf9;--sand:#eadfce;--gold:#d5b77a;--ink:#352d2a;
+
+ --muted:#82756d;--line:#e9dfd4;--soft:#f3e8e2;--green:#547365;
+
+ --shadow:0 12px 35px rgba(82,48,47,.09)
+
+}
+
+*{box-sizing:border-box}
+
+body{margin:0;background:var(--cream);color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",sans-serif}
+
+button{font:inherit;cursor:pointer}
+
+.app{min-height:100vh}
+
+.topbar{background:var(--wine);color:white;padding:15px max(18px,calc((100% - 1180px)/2));display:flex;align-items:center;justify-content:space-between;gap:15px;position:sticky;top:0;z-index:10;box-shadow:0 4px 18px #3c20221c}
+
+.brand{display:flex;align-items:center;gap:11px}
+
+.logo{width:43px;height:43px;border-radius:13px;background:var(--gold);color:var(--wine);display:grid;place-items:center;font-family:Georgia,serif;font-size:25px;font-weight:800}
+
+.brand strong{display:block;letter-spacing:.08em;font-size:14px}
+
+.brand small{color:#f0d9c5;letter-spacing:.14em;font-size:10px}
+
+.topmeta{font-size:11px;color:#f1e2d9;letter-spacing:.06em}
+
+.wrap{max-width:1180px;margin:auto;padding:24px 20px 55px}
+
+.hero{background:linear-gradient(115deg,#713b45,#a65d52);border-radius:24px;padding:30px;color:white;position:relative;overflow:hidden;box-shadow:var(--shadow)}
+
+.hero:after{display:none}
+
+.eyebrow{font-size:11px;letter-spacing:.16em;color:#f0d9a8;font-weight:750}
+
+.hero h1{font-family:Georgia,serif;font-size:clamp(30px,5vw,48px);line-height:1.08;margin:10px 0}
+
+.hero p{color:#f5e9e3;max-width:600px;line-height:1.7;margin:0 0 20px}
+
+.primary{background:var(--gold);color:#503039;border:0;padding:12px 18px;border-radius:12px;font-weight:750;box-shadow:0 4px 12px #30171b22}
+
+.secondary{background:white;color:var(--wine);border:1px solid var(--line);padding:10px 14px;border-radius:11px;font-weight:650}
+
+.ghost{background:transparent;border:1px solid #ffffff65;color:white;padding:10px 14px;border-radius:11px;font-weight:650}
+
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:13px;margin:18px 0 27px}
+
+.stat,.panel,.tile{background:var(--paper);border:1px solid var(--line);border-radius:17px;padding:17px;box-shadow:0 5px 20px rgba(82,48,47,.035)}
+
+.stat b{font-size:24px;color:var(--wine)}
+
+.stat small{display:block;color:var(--muted);margin-top:3px}
+
+.section-head{display:flex;align-items:end;justify-content:space-between;gap:10px;margin:26px 0 13px}
+
+.section-head h2{margin:0;font-size:21px}.section-head p{margin:3px 0 0;color:var(--muted);font-size:13px}
+
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:13px}
+
+.tile{min-height:145px;text-align:left;transition:.18s;border-color:var(--line);color:var(--ink)}
+
+.tile:hover{transform:translateY(-3px);box-shadow:var(--shadow);border-color:#d5b7a7}
+
+.tile .ico{width:40px;height:40px;border-radius:12px;background:var(--soft);display:grid;place-items:center;font-size:20px;margin-bottom:12px}
+
+.tile strong{display:block}.tile small{display:block;color:var(--muted);margin-top:4px;line-height:1.45}
+
+.progress{height:8px;background:#eee6dc;border-radius:20px;overflow:hidden;margin-top:11px}
+
+.progress span{display:block;height:100%;background:var(--terracotta);width:0;transition:.3s}
+
+.content{display:none}.content.active{display:block}
+
+.back{border:0;background:transparent;color:var(--wine);font-weight:750;padding:5px 0;margin-bottom:12px}
+
+.lesson-head{background:linear-gradient(110deg,var(--wine),var(--terracotta));color:white;padding:24px;border-radius:18px;margin-bottom:16px}
+
+.lesson-head h2{font-family:Georgia,serif;font-size:27px;margin:5px 0}
+
+.lesson-head p{color:#f4e5de;margin:0;line-height:1.55}
+
+.panel{margin-bottom:14px;line-height:1.7}
+
+.panel h3{margin:0 0 8px;color:var(--wine);font-size:18px}
+
+.panel h4{margin:14px 0 5px;color:var(--terracotta)}
+
+.panel p{margin:8px 0}
+
+.callout{background:#f7eee8;border-left:4px solid var(--terracotta);padding:13px 15px;border-radius:10px;margin:12px 0}
+
+.note{background:#f7f1e4;border:1px solid #eadbbd;padding:12px 14px;border-radius:11px;margin:12px 0}
+
+.pill{display:inline-block;background:#f3e6df;color:var(--wine);border-radius:999px;padding:5px 10px;font-size:11px;font-weight:750}
+
+.two{display:grid;grid-template-columns:1fr 1fr;gap:13px}
+
+.navrow{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}
+
+.navrow button{border:1px solid var(--line);background:white;border-radius:999px;padding:8px 13px;color:var(--wine)}
+
+.navrow button.active{background:var(--wine);color:white}
+
+.quiz-option{display:block;width:100%;text-align:left;background:#fff;border:1px solid var(--line);padding:12px 13px;border-radius:11px;margin:8px 0;color:var(--ink)}
+
+.quiz-option:hover{border-color:#c99b91}.quiz-option.selected{border:2px solid var(--terracotta);background:#fbf0eb}
+
+.feedback{padding:12px;border-radius:11px;margin-top:12px;background:#f7eee8}
+
+.feedback.good{background:#eaf2ec;color:#315c43}.feedback.bad{background:#f9e9e6;color:#8c3e37}
+
+.badge{display:inline-block;background:#f2e6df;color:var(--wine);border-radius:999px;padding:5px 9px;font-size:11px;font-weight:750}
+
+.story-quote{font-family:Georgia,serif;font-size:17px;line-height:1.8;color:#59443e;background:#fbf6ef;border:1px solid var(--line);padding:17px;border-radius:13px}
+
+table{width:100%;border-collapse:collapse;font-size:14px}
+
+th,td{text-align:left;padding:10px;border-bottom:1px solid var(--line);vertical-align:top}
+
+th{color:var(--wine);background:#f8f0e9}
+
+.footer{text-align:center;color:var(--muted);font-size:12px;margin-top:35px}
+
+.small{font-size:12px;color:var(--muted)}
+
+@media(max-width:850px){.grid{grid-template-columns:repeat(2,1fr)}}
+
+@media(max-width:560px){
+
+ .topbar{padding:12px 14px}.topmeta{display:none}.wrap{padding:16px 13px 38px}
+
+ .hero{padding:23px 19px;border-radius:19px}.stats{gap:8px}.stat{padding:12px}.stat b{font-size:20px}.stat small{font-size:10px}
+
+ .grid{gap:9px}.tile{padding:13px;min-height:132px}.section-head h2{font-size:18px}
+
+ .two{grid-template-columns:1fr}.lesson-head{padding:20px}.lesson-head h2{font-size:23px}
+
+ table{font-size:12px}th,td{padding:8px}
+
+}
+
+
+/* Form idéntitas pengunjung MPI */
+.visitor-gate{position:fixed;inset:0;z-index:1000;background:rgba(43,25,28,.72);display:grid;place-items:center;padding:18px}
+.visitor-card{width:min(100%,430px);background:var(--paper);border:1px solid var(--line);border-radius:20px;padding:25px;box-shadow:0 18px 55px rgba(0,0,0,.22)}
+.visitor-card h2{font-family:Georgia,serif;color:var(--wine);margin:0 0 7px;font-size:26px}
+.visitor-card p{color:var(--muted);line-height:1.55;margin:0 0 17px;font-size:14px}
+.visitor-card label{display:block;color:var(--wine);font-weight:700;font-size:13px;margin:12px 0 6px}
+.visitor-card input,.visitor-card select{width:100%;padding:12px;border:1px solid var(--line);border-radius:10px;background:#fff;color:var(--ink);font:inherit}
+.visitor-card button{width:100%;margin-top:18px}
+.visitor-error{color:#a13e36;font-size:12px;min-height:18px;margin-top:8px}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="app">
+
+<div class="visitor-gate" id="visitorGate">
+  <form class="visitor-card" id="visitorForm">
+    <span class="pill">MPI NOVEL · KELAS IX</span>
+    <h2>Wilujeng Sumping!</h2>
+    <p>Sateuacan ngamimitian diajar, eusian heula idéntitas ieu pikeun nyatet kunjungan.</p>
+    <label for="visitorName">Ngaran lengkep</label>
+    <input id="visitorName" name="nama" type="text" autocomplete="name" maxlength="100" required placeholder="Tulis ngaran">
+    <label for="visitorOrigin">Asal</label>
+    <select id="visitorOrigin" name="asal" required>
+      <option value="">Pilih asal</option>
+      <option value="Siswa">Siswa</option>
+      <option value="Guru">Guru</option>
+      <option value="Umum">Umum</option>
+    </select>
+    <div class="visitor-error" id="visitorError" role="status"></div>
+    <button class="primary" id="visitorSubmit" type="submit">Mimitian Diajar →</button>
+  </form>
+</div>
+
+
+<header class="topbar">
+
+ <div class="brand"><div class="logo">N</div><div><strong>HAYU DIAJAR</strong><small>WAWASAN NOVEL SUNDA</small></div></div>
+
+ <div class="topmeta">MEDIA PEMBELAJARAN INTERAKTIF · KELAS IX</div>
+
+</header>
+
+<main class="wrap">
+
+<section id="home" class="content active">
+
+ <div class="hero">
+
+  <div class="eyebrow">WILUJENG SUMPING!</div>
+
+  <h1>Hayu Ngaguar<br>Dunya Novel!</h1>
+
+  <p>Diajar mikanyaho novel, nalungtik unsur carita, jeung ngaguar ajén kahirupan ngaliwatan novel <i>Patepung di Bandung</i> karya Taufik Faturohman.</p>
+
+  <button class="primary" onclick="openPage('pangwanoh')">Mimitian Diajar →</button>
+
+ </div>
+
+ <div class="stats">
+
+  <div class="stat"><b id="doneCount">0/5</b><small>Bagéan diajar</small></div>
+
+  <div class="stat"><b id="bestScore">—</b><small>Skor evaluasi pangluhurna</small></div>
+
+  <div class="stat"><b id="progressPct">0%</b><small>Kamajuan diajar</small></div>
+
+ </div>
+
+ <div class="section-head"><div><h2>Jelajah Pangajaran</h2><p>Pilih salah sahiji bagian pikeun ngamimitian.</p></div><span class="badge">Kelas IX</span></div>
+
+ <div class="grid">
+
+  <button class="tile" onclick="openPage('pangwanoh')"><div class="ico">📖</div><strong>01 · Pangwanoh</strong><small>Tujuan jeung pituduh diajar novel</small></button>
+
+  <button class="tile" onclick="openPage('wawasan')"><div class="ico">📚</div><strong>02 · Wawasan Novel</strong><small>Wangenan, ciri, jeung rupa-rupa novel</small></button>
+
+  <button class="tile" onclick="openPage('unsur')"><div class="ico">🧩</div><strong>03 · Unsur Novel</strong><small>Unsur intrinsik jeung ékstrinsik</small></button>
+
+  <button class="tile" onclick="openPage('struktur')"><div class="ico">📝</div><strong>04 · Struktur jeung Basa</strong><small>Wangun carita jeung kaédah basa</small></button>
+
+  <button class="tile" onclick="openPage('bedah')"><div class="ico">🔎</div><strong>05 · Bedah Novel</strong><small>Ngulik Patepung di Bandung</small></button>
+
+  <button class="tile" onclick="openPage('evaluasi')"><div class="ico">🎯</div><strong>06 · Evaluasi</strong><small>Latihan soal, kaulinan, jeung hasil diajar</small></button>
+
+ </div>
+
+ <div class="section-head"><div><h2>Kamajuan Diajar</h2><p>Kamajuan bakal kacatet dina browser anu dipaké.</p></div></div>
+
+ <div class="panel"><div style="display:flex;justify-content:space-between;gap:10px"><strong>Progres sakabéhna</strong><strong id="progressLabel">0%</strong></div><div class="progress"><span id="progressBar"></span></div><p class="small">Geura réngsékeun unggal bagian, laju jajal évaluasi pikeun ngukur pamahaman.</p></div>
+
+</section>
+
+
+
+<section id="pangwanoh" class="content">
+
+ <button class="back" onclick="openPage('home')">← Beranda</button>
+
+ <div class="lesson-head"><span class="eyebrow">BAGÉAN 01</span><h2>Pangwanoh</h2><p>Ngawanohkeun tujuan jeung pituduh diajar ngeunaan novel.</p></div>
+
+ <div class="panel">
+
+  <h3>Wilujeng diajar!</h3>
+
+  <p>Dina pangajaran ieu, urang bakal diajar ngeunaan novel minangka salah sahiji wangun karya sastra. Urang moal ngan saukur maca carita, tapi ogé nengetan kumaha carita diwangun, saha baé tokohna, kumaha pasualanana, sarta ajén naon anu bisa dicokot tina éta carita.</p>
+
+  <div class="callout"><b>Novel anu jadi bahan ulikan:</b><br><span style="font-family:Georgia,serif;font-size:21px;color:var(--wine)">Patepung di Bandung</span><br>Karya Taufik Faturohman.</div>
+
+ </div>
+
+ <div class="two">
+
+  <div class="panel"><h3>Tujuan pangajaran</h3><ol><li>Ngajelaskeun wangenan jeung ciri-ciri novel.</li><li>Ngabédakeun unsur intrinsik jeung ékstrinsik.</li><li>Ngajelaskeun struktur jeung kaédah basa novel.</li><li>Nganalisis eusi novel dumasar kana unsur-unsurna.</li><li>Némbongkeun pamahaman kana ajén kahirupan dina novel.</li></ol></div>
+
+  <div class="panel"><h3>Pituduh ngagunakeun MPI</h3><ol><li>Pilih menu anu rék diajar.</li><li>Baca pedaran kalawan taliti.</li><li>Tengetan conto tina novel.</li><li>Réngsékeun unggal bagian.</li><li>Asup ka Evaluasi pikeun ngajawab soal jeung kaulinan.</li></ol></div>
+
+ </div>
+
+ <div class="panel"><h3>Patarosan panganteur</h3><p>Naha manéh kungsi maca carita panjang anu tokoh jeung pasualanana mekar ti mimiti nepi ka ahir?</p><p>Carita panjang saperti kitu salah sahijina disebut novel.</p><button class="primary" onclick="complete('pangwanoh');openPage('wawasan')">Bagéan ieu geus kaharti →</button>
+
+ </div>
+
+</section>
+
+
+
+<section id="wawasan" class="content">
+
+ <button class="back" onclick="openPage('home')">← Beranda</button>
+
+ <div class="lesson-head"><span class="eyebrow">BAGÉAN 02</span><h2>Wawasan Novel</h2><p>Mikanyaho harti, ciri-ciri, jeung rupa-rupa novel.</p></div>
+
+ <div class="panel"><h3>Naon ari novel?</h3><p><b>Novel</b> nyaéta karya sastra wangun prosa rékaan anu nyaritakeun kahirupan tokoh kalawan lalakon anu relatif panjang tur kompléks. Dina novel, tokoh-tokohna nyanghareupan rupa-rupa kajadian jeung pasualan anu silih patali.</p><p>Novel biasana miboga carita anu leuwih lega tibatan carpon, boh tina jumlah kajadian, kamekaran tokoh, latar, boh konflikna.</p></div>
+
+ <div class="panel"><h3>Ciri-ciri novel</h3><div class="two"><div><span class="pill">Carita panjang</span><p>Lalakon diwangun ku runtuyan kajadian anu leuwih jembar.</p><span class="pill">Tokoh leuwih mekar</span><p>Tokoh bisa ngalaman parobahan sikep atawa kaayaan.</p></div><div><span class="pill">Konflik rupa-rupa</span><p>Pasualan bisa patali jeung diri sorangan, kulawarga, atawa masarakat.</p><span class="pill">Latar leuwih jembar</span><p>Tempat, waktu, jeung lingkungan sosial digambarkeun leuwih jéntré.</p></div></div></div>
+
+ <div class="panel"><h3>Bédana novel jeung carpon</h3><table><tr><th>Novel</th><th>Carpon</th></tr><tr><td>Caritana relatif panjang.</td><td>Caritana pondok.</td></tr><tr><td>Tokoh jeung pasualan bisa leuwih loba tur mekar.</td><td>Biasana museur kana hiji kajadian atawa konflik utama.</td></tr><tr><td>Latar jeung runtuyan kajadian leuwih jembar.</td><td>Latar jeung kajadian leuwih kawates.</td></tr></table></div>
+
+ <div class="panel"><h3>Rupa-rupa novel</h3><p>Novel bisa digolongkeun dumasar kana jejer atawa eusina, upamana:</p><ul><li><b>Novel sosial:</b> nyaritakeun kahirupan jeung hubungan masarakat.</li><li><b>Novel kulawarga:</b> nyaritakeun pasualan jeung kanyaah dina kulawarga.</li><li><b>Novel sajarah:</b> nyaritakeun kajadian anu patali jeung mangsa katukang.</li><li><b>Novel petualangan:</b> nyaritakeun lalampahan jeung rupa-rupa pangalaman.</li><li><b>Novel psikologis:</b> leuwih museur kana pikiran jeung kaayaan batin tokoh.</li></ul><p class="small">Hiji novel bisa ngandung leuwih ti hiji jejer atawa golongan.</p></div>
+
+ <div class="panel"><h3>Conto: Patepung di Bandung</h3><p><i>Patepung di Bandung</i> karya Taufik Faturohman ngagambarkeun perjuangan hirup Kondi jeung kulawargana. Tina caritana, urang bisa niténan pasualan ékonomi, kulawarga, parobahan jaman, jeung usaha pikeun ngarobah nasib.</p><button class="primary" onclick="complete('wawasan');openPage('unsur')">Bagéan ieu geus kaharti →</button></div>
+
+</section>
+
+
+
+<section id="unsur" class="content">
+
+ <button class="back" onclick="openPage('home')">← Beranda</button>
+
+ <div class="lesson-head"><span class="eyebrow">BAGÉAN 03</span><h2>Unsur Novel</h2><p>Ngulik unsur intrinsik jeung ékstrinsik, dibarengan ku rupa-rupa jeung conto dina carita.</p></div>
+
+
+
+ <div class="panel">
+
+  <h3>1. Naon ari unsur intrinsik?</h3>
+
+  <p>Unsur intrinsik nyaéta unsur-unsur anu ngawangun hiji carita ti jero. Unsur ieu silih lengkepan nepi ka carita jadi gembleng tur kaharti ku nu maca.</p>
+
+  <div class="callout"><b>Unsur intrinsik anu kudu dipikanyaho:</b><br>Téma · Palaku jeung watek · Galur · Latar · Puseur sawangan · Amanat · Gaya basa.</div>
+
+ </div>
+
+
+
+ <div class="panel">
+
+  <h3>A. Téma</h3>
+
+  <p><b>Téma</b> nyaéta gagasan poko atawa ide utama anu jadi dasar jeung puseur carita. Téma lain judul carita, tapi hal utama anu rék ditepikeun ku pangarang ngaliwatan lalakon.</p>
+
+  <h4>Rupa-rupa téma</h4>
+
+  <ul>
+
+   <li><b>Téma sosial:</b> patali jeung hubungan antarmanusa jeung kahirupan masarakat.</li>
+
+   <li><b>Téma kulawarga:</b> patali jeung kanyaah, pasualan, jeung tanggung jawab dina kulawarga.</li>
+
+   <li><b>Téma perjuangan:</b> patali jeung usaha tokoh dina nyanghareupan kasusah pikeun ngahontal kahayangna.</li>
+
+   <li><b>Téma atikan:</b> patali jeung pentingna élmu, sakola, jeung prosés diajar.</li>
+
+   <li><b>Téma kanyaah:</b> patali jeung rasa nyaah ka kulawarga, babaturan, atawa sasama.</li>
+
+  </ul>
+
+  <div class="note"><b>Conto dina Patepung di Bandung:</b> Téma anu bisa dicindekkeun tina ringkesan carita nyaéta perjuangan hirup jeung usaha ngarobah nasib. Ieu katitén tina lalakon Kondi anu nyanghareupan kasusah ékonomi, indit ka Bandung, néangan lanceukna, laju boga kasempetan neruskeun sakola.</div>
+
+  <p class="small">Cara nangtukeun téma: baca sakabéh lalakon, tengetan pasualan anu pangmindengna muncul, laju téangan gagasan anu ngahijikeun éta pasualan.</p>
+
+ </div>
+
+
+
+ <div class="panel">
+
+  <h3>B. Palaku jeung watek</h3>
+
+  <p><b>Palaku</b> nyaéta tokoh atawa jalma anu ngalalakon dina carita. Ari <b>watek</b> nyaéta sipat, tabiat, atawa karakter anu dipiboga ku éta palaku.</p>
+
+  <h4>1. Dumasar kana kalungguhanana dina carita</h4>
+
+  <ul>
+
+   <li><b>Palaku utama:</b> tokoh anu pangmindengna dicaritakeun sarta jadi puseur kajadian. <br><span class="small">Conto: Kondi, sabab lalakon utamana museur kana kahirupan jeung perjuangan Kondi.</span></li>
+
+   <li><b>Palaku tambahan:</b> tokoh anu ngarojong atawa ngalengkepan lalakon palaku utama. <br><span class="small">Conto: Mang Mahmud, Si Jana, Si Ahid, jeung Si Sulé dina sempalan carita di Pasar Ciroyom.</span></li>
+
+  </ul>
+
+  <h4>2. Dumasar kana peranna dina konflik</h4>
+
+  <ul>
+
+   <li><b>Protagonis:</b> palaku anu jadi puseur simpati atawa dipikaresep ku nu maca, biasana mawa tujuan anu dipikaharti ku nu maca. <br><span class="small">Conto: Kondi, anu digambarkeun sabar, daék digawé, jeung hayang néangan lanceukna.</span></li>
+
+   <li><b>Antagonis:</b> palaku atawa kakuatan anu ngalawan kahayang protagonis atawa ngahalangan tujuanana. Antagonis henteu salawasna jalma jahat; bisa ogé mangrupa kaayaan atawa pasualan. <br><span class="small">Conto: Kasusah ékonomi jeung kaayaan hirup anu jadi panghalang pikeun Kondi. Dina ieu conto, anu jadi kakuatan antagonis nyaéta kaayaan, lain kudu hiji jalma.</span></li>
+
+   <li><b>Tritagonis:</b> palaku anu jadi panengah, pangrojong, atawa mantuan nyambungkeun konflik antara pihak-pihak dina carita. <br><span class="small">Conto interpretatif: Mang Mahmud bisa ditempo minangka tokoh pangrojong anu mantuan Kondi meunang pagawéan jeung ngamimitian néangan lanceukna.</span></li>
+
+  </ul>
+
+  <h4>3. Dumasar kana kamekaran watek</h4>
+
+  <ul>
+
+   <li><b>Palaku kompleks:</b> watekna miboga sababaraha sisi sarta bisa robah atawa mekar saluyu jeung kajadian. <br><span class="small">Conto anu bisa ditalungtik: Kang Odong, anu kungsi ngalakukeun kajahatan, laju insap sarta hirup bener.</span></li>
+
+   <li><b>Palaku basajan:</b> watekna leuwih basajan jeung henteu loba robah ti awal nepi ka ahir carita.</li>
+
+  </ul>
+
+  <div class="note"><b>Inget!</b> Hiji tokoh bisa kaasup palaku utama sakaligus protagonis. Klasifikasi palaku utama/tambahan dumasar kana pentingna tokoh dina carita, ari protagonis/antagonis dumasar kana peranna dina konflik. Jadi, éta dua golongan henteu sarua.</div>
+
+ </div>
+
+
+
+ <div class="panel">
+
+  <h3>C. Galur (alur)</h3>
+
+  <p><b>Galur</b> nyaéta runtuyan kajadian anu silih patali ti mimiti nepi ka ahir carita. Galur ngatur kumaha hiji pasualan dimimitian, dimekarkeun, ngahontal puncak, laju diréngsékeun.</p>
+
+  <h4>Rupa-rupa galur dumasar kana runtuyan waktuna</h4>
+
+  <ul>
+
+   <li><b>Galur maju:</b> kajadian dicaritakeun sacara ngaruntuy ti mangsa awal, terus maju ka kajadian saterusna. <br><span class="small">Conto: Kondi hirup susah di lembur → digawé → indit ka Bandung → néangan lanceukna → patepung deui jeung Kang Odong.</span></li>
+
+   <li><b>Galur mundur (flashback):</b> carita dimimitian ku kajadian anu geus lumangsung, laju nyaritakeun deui kajadian saméméhna. <br><span class="small">Conto ilustrasi: carita dimimitian ku Kondi anu geus digawé di Bandung, laju manéhna nginget-nginget deui kasusah kulawargana di Pagerageung.</span></li>
+
+   <li><b>Galur campuran:</b> ngagabungkeun galur maju jeung mundur. <br><span class="small">Conto ilustrasi: carita maju nalika Kondi néangan lanceukna, laju aya bagian anu nyaritakeun deui kajadian mangsa bapana masih usaha, sanggeus éta carita maju deui.</span></li>
+
+  </ul>
+
+  <h4>Tahapan galur</h4>
+
+  <ol>
+
+   <li><b>Orientasi:</b> ngenalkeun tokoh jeung kaayaan awal.</li>
+
+   <li><b>Munculna konflik:</b> pasualan mimiti karandapan ku tokoh.</li>
+
+   <li><b>Komplikasi:</b> pasualan beuki mekar jeung ruwet.</li>
+
+   <li><b>Klimaks:</b> konflik ngahontal puncak.</li>
+
+   <li><b>Resolusi:</b> pasualan mimiti diréngsékeun.</li>
+
+  </ol>
+
+  <div class="note"><b>Conto dina Patepung di Bandung:</b> Dumasar kana ringkesan anu dipaké dina MPI ieu, runtuyan kajadian Kondi ditepikeun sacara ngaruntuy, ku kituna bisa dianalisis minangka galur maju. Pikeun mastikeun sakabéh téknik galur dina novel, kudu nengetan naskah lengkepna.</div>
+
+ </div>
+
+
+
+ <div class="panel">
+
+  <h3>D. Latar (setting)</h3>
+
+  <p><b>Latar</b> nyaéta katerangan ngeunaan tempat, waktu, jeung suasana nalika kajadian dina carita lumangsung. Latar mantuan nu maca ngabayangkeun kaayaan carita.</p>
+
+  <h4>1. Latar tempat</h4>
+
+  <p>Nuduhkeun lokasi atawa tempat lumangsungna kajadian.</p>
+
+  <p><b>Conto:</b> Pagerageung, Kabupatén Tasikmalaya, minangka lembur asal Kondi; Pasar Ciroyom, Kota Bandung, tempat Kondi ngajaga kios béas.</p>
+
+  <h4>2. Latar waktu</h4>
+
+  <p>Nuduhkeun iraha kajadian lumangsung, bisa mangrupa jam, poé, bulan, taun, isuk, beurang, atawa peuting.</p>
+
+  <p><b>Conto tina sempalan:</b> “Kira-kira tabuh lima” nalika Kondi mimiti naék mobil; “kira-kira tabuh dalapan” nalika mobil nepi ka Pasar Ciroyom; jeung kaayaan peuting nalika pasar masih ramé.</p>
+
+  <h4>3. Latar suasana</h4>
+
+  <p>Nuduhkeun kaayaan rasa atawa suasana anu karasa dina hiji kajadian.</p>
+
+  <p><b>Conto:</b> prihatin jeung nalangsa nalika kulawarga Kondi katempuhan kasusah ékonomi; hariwang nalika Kondi néangan lanceukna; bungah nalika ahirna patepung deui jeung Kang Odong.</p>
+
+  <h4>4. Latar sosial</h4>
+
+  <p>Nuduhkeun kaayaan kahirupan masarakat, kabiasaan, pakasaban, jeung hubungan sosial dina carita.</p>
+
+  <p><b>Conto:</b> kahirupan padagang jeung tukang kuli di Pasar Ciroyom, ogé kaayaan kulawarga basajan di lembur.</p>
+
+ </div>
+
+
+
+ <div class="panel">
+
+  <h3>E. Puseur sawangan (sudut pandang)</h3>
+
+  <p><b>Puseur sawangan</b> nyaéta posisi atawa cara pangarang nepikeun carita ka nu maca. Puseur sawangan nangtukeun saha anu nyaritakeun kajadian jeung sabaraha jauh panyatur apal kana kajadian atawa pikiran tokoh.</p>
+
+  <h4>1. Puseur sawangan jalma kahiji</h4>
+
+  <p>Panyatur ngagunakeun kecap gaganti saperti <b>kuring</b> atawa <b>urang</b>. Panyatur ilubiung dina carita minangka tokoh utama atawa tokoh pangrojong.</p>
+
+  <p><b>Conto tina sempalan:</b> “Kira-kira tabuh lima, kuring geus anjeucleu dina mobil.” Kecap “kuring” nuduhkeun panyatur jalma kahiji.</p>
+
+  <h4>2. Puseur sawangan jalma katilu</h4>
+
+  <p>Panyatur aya di luar carita sarta nyebut tokoh ku ngaranna atawa kecap gaganti saperti <b>manéhna</b>, <b>anjeunna</b>, jeung <b>maranéhna</b>.</p>
+
+  <p><b>Conto ilustrasi:</b> “Kondi naék kana mobil bari mawa harepan bisa manggihan lanceukna di Bandung.” Dina conto ieu, panyatur nyebut tokoh ku ngaranna, lain nyebut dirina “kuring”.</p>
+
+  <h4>Rupa puseur sawangan jalma katilu</h4>
+
+  <ul>
+
+   <li><b>Jalma katilu kawates:</b> panyatur utamana nuturkeun pangalaman jeung pikiran hiji tokoh.</li>
+
+   <li><b>Jalma katilu mahatahu:</b> panyatur bisa nyaritakeun kajadian, pikiran, jeung rasa sababaraha tokoh.</li>
+
+  </ul>
+
+  <div class="note"><b>Catetan penting:</b> Sempalan anu diasupkeun dina MPI ngagunakeun jalma kahiji. Éta can cukup pikeun mastikeun yén sakabéh novel ngagunakeun puseur sawangan jalma kahiji; pikeun mastikeunana, kudu maca naskah lengkep.</div>
+
+ </div>
+
+
+
+ <div class="panel">
+
+  <h3>F. Amanat</h3>
+
+  <p><b>Amanat</b> nyaéta pesen, piwuruk, atawa ajén anu hayang ditepikeun ku pangarang ka nu maca ngaliwatan lalakon jeung paripolah tokoh.</p>
+
+  <h4>Rupa amanat</h4>
+
+  <ul>
+
+   <li><b>Amanat langsung:</b> pesen ditepikeun sacara écés, upamana ku omongan tokoh atawa katerangan narator.</li>
+
+   <li><b>Amanat teu langsung:</b> pesen kudu dicindekkeun ku nu maca tina kajadian, pilihan, jeung akibat tina paripolah tokoh.</li>
+
+  </ul>
+
+  <div class="note"><b>Conto amanat dina Patepung di Bandung:</b> urang kudu sabar jeung terus usaha dina nyanghareupan kasusah; ulah gampang nyerah; kudu tanggung jawab ka kulawarga; jalma anu kungsi salah masih bisa ngarobah diri; sarta atikan penting pikeun ka hareup.</div>
+
+  <p><b>Bédana téma jeung amanat:</b> téma mangrupa gagasan utama carita, ari amanat mangrupa pesen atawa piwuruk anu bisa dicokot tina éta carita.</p>
+
+ </div>
+
+
+
+ <div class="panel">
+
+  <h3>G. Gaya basa</h3>
+
+  <p><b>Gaya basa</b> nyaéta cara pangarang milih jeung ngagunakeun kecap atawa ungkara pikeun ngahirupkeun carita, ngawangun suasana, sarta méré kesan ka nu maca.</p>
+
+  <h4>1. Gaya basa dumasar kana cara ngedalkeunana</h4>
+
+  <ul>
+
+   <li><b>Lugas/literal:</b> kecap dipaké luyu jeung harti sabenerna. <br><span class="small">Conto: “Kondi digawé di pabrik aci.”</span></li>
+
+   <li><b>Gaya basa babandingan (simile):</b> ngabandingkeun dua hal maké kecap saperti lir, kawas, atawa ibarat. <br><span class="small">Conto ilustrasi: “Haténa pageuh lir batu.”</span></li>
+
+   <li><b>Métafora:</b> ngabandingkeun dua hal sacara langsung tanpa kecap pangbanding. <br><span class="small">Conto ilustrasi: “Indung éta panonpoé dina kahirupan kulawargana.”</span></li>
+
+   <li><b>Personifikasi:</b> méré sipat atawa kalakuan manusa kana barang atawa kaayaan. <br><span class="small">Conto ilustrasi: “Angin peuting ngaharéwos di sisi pasar.”</span></li>
+
+   <li><b>Hiperbola:</b> ngagedé-gedékeun hiji kaayaan pikeun nekenkeun rasa atawa maksud. <br><span class="small">Conto ilustrasi: “Ceurikna ngageleger saalam dunya.”</span></li>
+
+   <li><b>Ironi:</b> ngedalkeun hal anu sabalikna tina kanyataan, biasana pikeun nyindiran. <br><span class="small">Conto ilustrasi: “Rapih jasa kamar maneh, nepi ka barang-barang paburantak di mana-mana.”</span></li>
+
+  </ul>
+
+  <h4>2. Gaya basa dina sempalan Patepung di Bandung</h4>
+
+  <p>Sempalan anu dipidangkeun ngagunakeun basa Sunda sapopoé, paguneman langsung, jeung ungkara anu ngagambarkeun kaayaan pasar. Contona, katerangan yén pasar beuki ramé sanajan geus peuting ngawangun gambaran suasana pasar anu hirup.</p>
+
+  <div class="note">Conto simile, métafora, personifikasi, hiperbola, jeung ironi di luhur mangrupa conto jieunan pikeun ngajelaskeun jinis gaya basa. Éta lain cutatan tina novel Patepung di Bandung.</div>
+
+ </div>
+
+
+
+ <div class="panel">
+
+  <h3>2. Unsur ékstrinsik</h3>
+
+  <p>Unsur ékstrinsik nyaéta hal-hal ti luar carita anu mangaruhan kana lahirna atawa pamahaman kana hiji karya sastra.</p>
+
+  <ul>
+
+   <li><b>Kasang tukang pangarang:</b> pangalaman, atikan, jeung lingkungan pangarang.</li>
+
+   <li><b>Kaayaan sosial budaya:</b> adat, kabiasaan, jeung kahirupan masarakat anu jadi kontéks carita.</li>
+
+   <li><b>Kaayaan ékonomi jeung sajarah:</b> kaayaan jaman anu mangaruhan kahirupan tokoh jeung kajadian.</li>
+
+   <li><b>Ajén kahirupan:</b> ajén moral, sosial, budaya, jeung atikan anu patali jeung carita.</li>
+
+  </ul>
+
+  <div class="note"><b>Conto dina Patepung di Bandung:</b> parobahan téknologi kaméra mangaruhan kana usaha tukang potrét; persaingan dagang mangaruhan kana usaha bapana Kondi; sarta kaayaan ékonomi kulawarga mangaruhan kana kahirupan jeung atikan Kondi.</div>
+
+ </div>
+
+
+
+ <div class="panel">
+
+  <h3>Rangkuman analisis unsur Patepung di Bandung</h3>
+
+  <table>
+
+   <tr><th>Unsur</th><th>Conto hasil analisis</th></tr>
+
+   <tr><td>Téma</td><td>Perjuangan hirup jeung usaha ngarobah nasib.</td></tr>
+
+   <tr><td>Palaku utama</td><td>Kondi.</td></tr>
+
+   <tr><td>Palaku tambahan</td><td>Bapa, indung, Kang Odong, Mang Mahmud, Asep Dodoy, Jana, Ahid, jeung Sulé.</td></tr>
+
+   <tr><td>Protagonis</td><td>Kondi, anu jadi puseur simpati dina carita.</td></tr>
+
+   <tr><td>Galur</td><td>Maju, dumasar kana runtuyan kajadian dina ringkesan carita.</td></tr>
+
+   <tr><td>Latar tempat</td><td>Pagerageung, Tasikmalaya jeung Pasar Ciroyom, Bandung.</td></tr>
+
+   <tr><td>Latar waktu</td><td>Conto dina sempalan: tabuh lima indit, tabuh dalapan nepi ka pasar, sarta peuting di Pasar Ciroyom.</td></tr>
+
+   <tr><td>Latar suasana</td><td>Prihatin, hariwang, jeung bungah dina kajadian anu béda-béda.</td></tr>
+
+   <tr><td>Puseur sawangan</td><td>Jalma kahiji dina sempalan anu dipidangkeun, ditandaan ku kecap “kuring”.</td></tr>
+
+   <tr><td>Amanat</td><td>Kudu sabar, daék usaha, tanggung jawab, sarta ulah leungit harepan pikeun ngarobah diri.</td></tr>
+
+  </table>
+
+  <div class="note"><b>Catetan analisis:</b> Sababaraha conto di luhur mangrupa hasil interpretasi dumasar kana ringkesan jeung sempalan anu disadiakeun. Pikeun mastikeun sakabéh unsur dina novel, guru jeung siswa bisa ngabandingkeun deui jeung naskah novel lengkep.</div>
+
+  <button class="primary" onclick="complete('unsur');openPage('struktur')">Bagéan ieu geus kaharti →</button>
+
+ </div>
+
+</section>
+
+
+
+<section id="struktur" class="content">
+
+ <button class="back" onclick="openPage('home')">← Beranda</button>
+
+ <div class="lesson-head"><span class="eyebrow">BAGÉAN 04</span><h2>Struktur jeung Basa</h2><p>Ngawanohkeun wangun lalakon jeung cara pangarang nepikeun carita.</p></div>
+
+ <div class="panel"><h3>Struktur lalakon novel</h3><p>Struktur carita bisa dipaké pikeun niténan kumaha hiji lalakon diwangun. Sacara umum, urang bisa ngabagi lalakon kana sababaraha tahapan ieu:</p>
+
+  <h4>1. Bubuka / orientasi</h4><p>Ngenalkeun tokoh, latar, jeung kaayaan awal carita.</p>
+
+  <h4>2. Munculna pasualan</h4><p>Tokoh mimiti nyanghareupan masalah anu ngagerakkeun carita.</p>
+
+  <h4>3. Mekarna konflik</h4><p>Pasualan beuki mekar sarta mangaruhan kahirupan tokoh.</p>
+
+  <h4>4. Klimaks</h4><p>Bagian nalika konflik ngahontal puncak atawa kaayaan anu kacida nangtukeunana.</p>
+
+  <h4>5. Panyelesaian</h4><p>Pasualan mimiti meunang jalan kaluar sarta carita ditutup.</p>
+
+  <div class="note">Tahapan di luhur mangrupa alat pikeun nganalisis lalakon. Henteu sakabéh novel kudu miboga wates bagian anu sarua écésna.</div>
+
+ </div>
+
+ <div class="panel"><h3>Kaédah basa dina novel</h3><ul><li><b>Narasi:</b> kalimah anu nyaritakeun runtuyan kajadian.</li><li><b>Déskripsi:</b> kalimah anu ngagambarkeun tokoh, tempat, atawa suasana.</li><li><b>Paguneman:</b> omongan langsung antartokoh.</li><li><b>Kecap pagawéan:</b> kecap anu nuduhkeun lampah atawa kajadian.</li><li><b>Kecap sipat:</b> kecap anu ngajelaskeun sipat atawa kaayaan.</li><li><b>Gaya basa:</b> pilihan ungkara anu méré warna kana carita.</li></ul></div>
+
+ <div class="panel"><h3>Conto tina sempalan novel</h3><div class="story-quote">“Kira-kira tabuh dalapan, mobil geus cunduk ka Pasar Ciroyom. Harita kénéh muatanana dibongkar ku tukang kuli.”</div><p><b>Jenis:</b> Narasi, sabab nyaritakeun kajadian anu karandapan ku tokoh.</p><div class="story-quote">“Tah, di dieu Kondi tempat dia mah,” ceuk Mang Mahmud bari mukakeun panto salasahiji wawangunan témbok.</div><p><b>Jenis:</b> Paguneman langsung, sabab ngamuat omongan tokoh.</p><div class="story-quote">“Matak héran nyaksian kaayaan di éta pasar. Sakitu geus peuting, tapi kalah beuki ramé ku nu balanja.”</div><p><b>Jenis:</b> Déskripsi, sabab ngagambarkeun kaayaan pasar.</p><button class="primary" onclick="complete('struktur');openPage('bedah')">Bagéan ieu geus kaharti →</button></div>
+
+</section>
+
+
+
+<section id="bedah" class="content">
+
+ <button class="back" onclick="openPage('home')">← Beranda</button>
+
+ <div class="lesson-head"><span class="eyebrow">BAGÉAN 05</span><h2>Bedah Novel</h2><pNgalarapkeun tiori kana eusi novel Patepung di Bandung karya Taufik Faturohman.*</p*></div>
+
+ <div class="panel"><h3>Ringkesan carita sacara gembleng</h3>
+
+ <p>Novel <i>Patepung di Bandung</i> nyaritakeun kahirupan Kondi, budak lembur ti Pagerageung, Kabupatén Tasikmalaya. Kulawargana hirup basajan. Bapana kungsi usaha jadi tukang potrét keliling, tapi lila-lila bangkrut lantaran kadéséh ku kamajuan jaman jeung beuki loba jalma anu boga kaméra. Bapana laju nyobaan dagang baso, tapi usaha éta ogé henteu hasil. Ahirna, bapana jadi kuli bangunan di Jakarta.</p>
+
+ <p>Hanjakal, nalika keur digawé, bapana ngalaman musibah ragrag ti luhur wangunan nepi ka teu bisa nanaon. Kaayaan ékonomi kulawarga beuki prihatin. Pikeun nyumponan kabutuhan sapopoé, parabot imah kapaksa dijual. Kasusah ékonomi ngabalukarkeun hubungan indung jeung bapana beuki rengat, nepi ka ahirna pipisahan di pangadilan agama.</p>
+
+ <p>Kondi milih nuturkeun bapana. Salila bapana gering ripuh, Kondi jeung lanceukna, Kang Odong, silih rojong pikeun ngabayuan bapana. Tapi Kang Odong kungsi ngalakukeun kajahatan ngabongkar toko nepi ka ditéwak ku pulisi. Mimitina dibui di kabupatén, laju dipindahkeun ka Bandung.</p>
+
+ <p>Balukarna, Kondi digawé di pabrik aci pikeun mantuan nyumponan kabutuh hirup. Sanggeus bapana maot, Kondi diajak ku Mang Mahmud, bandar béas anu boga kios di Pasar Ciroyom, Bandung. Kondi dipercaya pikeun nungguan kios jeung nyatet barang-barang anu dicokot ku para padagang.</p>
+
+ <p>Salila hirup di Bandung, Kondi boga kahayang pikeun néangan lanceukna, Kang Odong, anu geus lila papisah. Bari dibantuan ku Mang Mahmud, Kondi mimiti mapay raratan lanceukna. Dina hiji waktu, Kondi patepung jeung Asep Dodoy, urut raja copét anu geus sadar sarta robah jadi jalma bener.</p>
+
+ <p>Tina lalampahan éta, Kondi ahirna hasil patepung deui jeung Kang Odong. Tétéla, lanceukna ogé geus robah kahirupanana. Manéhna geus insap sarta boga usaha minangka bandar minyak anu ngider ka saban wewengkon. Kondi laju dititah balik deui ka lemburna pikeun ngurus indungna sarta neruskeun sakolana. Carita dipungkas ku kaayaan anu pikabungaheun.</p>
+
+ </div>
+
+ <div class="panel"><h3>Peta lalakon</h3><ol><li>Kahirupan basajan kulawarga Kondi di Pagerageung.</li><li>Bapana ngalaman kagagalan usaha jeung musibah nalika jadi kuli bangunan.</li><li>Indung jeung bapana pipisahan; Kondi milih nuturkeun bapana.</li><li>Kang Odong ditéwak lantaran ngabongkar toko.</li><li>Kondi digawé di pabrik aci, laju indit ka Bandung.</li><li>Kondi néangan lanceukna bari digawé di kios Pasar Ciroyom.</li><li>Kondi patepung jeung Asep Dodoy sarta manggihan Kang Odong.</li><li>Kondi balik ka lembur, ngurus indung, jeung neruskeun sakola.</li></ol></div>
+
+ <div class="two">
+
+  <div class="panel"><h3>Ajén kahirupan</h3><ul><li>Kasabaran dina nyanghareupan cocoba.</li><li>Tanggung jawab ka kulawarga.</li><li>Kasempetan pikeun tobat jeung ngarobah diri.</li><li>Pentingna atikan jeung sakola.</li><li>Kudu bisa nyaluyukeun diri jeung parobahan jaman.</li></ul></div>
+
+  <div class="panel"><h3>Patarosan pikeun sawala</h3><ol><li>Naha usaha bapana Kondi bisa éléh ku kamajuan jaman?</li><li>Kumaha pangaruh pasualan ékonomi kana kulawarga Kondi?</li><li>Naon bédana sikep Kondi jeung Kang Odong dina nyanghareupan kasusah?</li><li>Naon sababna parobahan Kang Odong jadi penting dina carita?</li><li>Naon amanat anu bisa dicokot tina lalakon Kondi?</li></ol></div>
+
+ </div>
+
+ <div class="panel"><h3>Sempalan téks: Kondi di Pasar Ciroyom</h3><p>Tengetan deui sempalan anu ngagambarkeun lalampahan Kondi ka Bandung, kaayaan kios, jeung mimiti wanoh jeung Ahid sarta Sulé. Sempalan ieu bisa dipaké pikeun nengetan narasi, paguneman, déskripsi, latar, jeung puseur sawangan jalma kahiji.</p><div class="note"><b>Catetan sumber:</b> Ringkesan gembleng dina ieu MPI disusun tina gurat badag carita jeung katerangan anu disadiakeun ku guru. Sempalan téks conto dicokot tina téks anu diasupkeun dina paguneman. Pikeun cutatan lengkep, pariksa deui kana édisi novel aslina.</div><button class="primary" onclick="complete('bedah');openPage('evaluasi')">Bagéan ieu geus kaharti — ka Evaluasi →</button></div>
+
+</section>
+
+
+
+<section id="evaluasi" class="content">
+
+ <button class="back" onclick="openPage('home')">← Beranda</button>
+
+ <div class="lesson-head"><span class="eyebrow">BAGÉAN 06</span><h2>Evaluasi jeung Kaulinan</h2><p>Uji pamahaman ku soal pilihan ganda, analisis sempalan carita, jeung tantangan gancang.</p></div>
+
+ <div class="panel"><h3>Pilih kagiatan</h3><div class="navrow"><button id="tabQuiz" class="active" onclick="showEval('quiz')">Latihan soal</button><button id="tabGame" onclick="showEval('game')">Kaulinan: Tantangan Bedah Novel</button><button id="tabResult" onclick="showEval('result')">Hasil diajar</button></div></div>
+
+ <div id="quizView" class="panel">
+
+  <div style="display:flex;justify-content:space-between;gap:10px;align-items:center"><span class="badge" id="quizNum">Soal 1 ti 10</span><span class="small" id="quizProgress">0/10 dijawab</span></div>
+
+  <div class="progress"><span id="quizBar"></span></div>
+
+  <h3 id="quizQuestion" style="margin-top:16px"></h3><div id="quizOptions"></div>
+
+  <div id="quizFeedback"></div><button class="primary" id="quizNext" onclick="submitQuiz()" style="margin-top:12px">Pariksa jawaban</button>
+
+ </div>
+
+ <div id="gameView" class="panel" style="display:none">
+
+<div id="gameReader" class="panel">
+
+  <span class="badge">Bahan bacaan · Sempalan novel</span>
+
+  <h3 style="color:var(--wine);margin-top:12px">Si Paser</h3>
+
+  <p class="small">Baca heula sempalan ieu kalawan taliti. Sanggeus maca, jawab sakabéh tantangan dumasar kana bukti dina téks.</p>
+
+  <div class="story-quote" style="font-family:inherit;font-size:14px;max-height:62vh;overflow-y:auto;white-space:pre-line;line-height:1.85">Kira-kira geus umur sataun, éta mencek geus mimiti bijil tanduk cagakna. Leutik, tapi seukeut jasa, mani méncos tungtungna géh. Tina gugusi luhurna geus bijil sihung, nyengklik kaluar kira-kira sagedé puhu nyéré kawung.
+
+Kuari mah jadi gagah éta Si Paser. Ku Eson, tandukna ngahaja sok diulasan ku minyak kalapa, pang hérang. Salian ti éta, kuari mah geus teu sieuneun ku anjing deuih. Lamun aya anjing nyampeurkeun bari ngagogog, Si Paser tara terus lumpat, tapi kalah terus dangah bari sukuna kokoér. Tungtungna anjing ogé tara wani ngadeukeutan ukur tingjaregug ti kajauhan. Anu sok wani ngagogog ti kadeukeutan bari nyamberan mah ukur anjing pamoroan. Kitu ogé lamun leuwih ti hiji bari dihucuh-hucuhkeun.
+
+Dina hiji poé, Si Buntung moncor ka jero pager. Gok baé jeung Si Paser anu harita keur depa di héndépeun tangkal jambu. Si Buntung ngagogog bari rék nyamber. Si Paser henteu lumpat kalah terus nangtung bari tatan-tatan nyanghareupan panarajang musuhna. Si Buntung narajang, tapi Si Paser teu éléh kesit. Teu katuturkeun ku panon saterusna mah, bakat ku ngan sakiceup, Si Buntung guguikan bari lumpat tibabaranting. Cangkéng Si Buntung dewang, getihna nyakclakan. Guguikanana géh kebel jasa, meureun bakat ku nyeri. Ari Si Paserna mah teu bocél saeutik-eutik acan.
+
+Dina hiji poé, Pa Yéyé kasémahan ku jurutulis désa. Maksudna taya lian rék nanyakeun ngeunaan mencek kukutan Eson. Pédah, cenah, geus sumebar béja yén di Cikonéng aya anu ngingu mencek.
+
+“Mémang enya, Jang Ulis, budak Akang anu miara mencek téa,” ceuk Pa Yéyé. Laju baé dicaritakeun riwayat Si Paser ti mimiti kapanggihna. Henteu ngahaja miara, ceuk Pa Yéyé, tapi timu ti kebon mimitina mah. Jeung ti batan paéh direwég anjing, mending diingu di imah.
+
+“Enya, kaharti ku kami ogé, Kang,” ceuk Jurutulis. “Ngan ieu mah hayang nepikeun ka Akang, malah mungkin Akang ogé nyaho, yén mencek éta kaasup sato anu ditangtayungan ku undang-undang. Ku kituna, sajaba ti teu meunang diala, dipiara ogé teu meunang, kajaba lamun boga idin resmi ti pamaréntah.”
+
+“Jadi, kudu kumaha atuh ieu Akang, Jang Ulis?” Pa Yéyé nanya.
+
+“Ieu mah ceuk Pa Lurah, Kang. Hadéna éta mencek leupaskeun deui baé ka leuweung. Tapi hampura nya, Kang, ari kami mah ukur nepikeun paréntah. Kitu amanat Pa Lurah,” témbal jurutulis.
+
+“Kaharti ku Akang ogé,” ceuk Pa Yéyé bari unggut-unggutan.
+
+Peutingna, Pa Yéyé ngageroan Eson. Harita manéhna kakara asup ka imah bari ngajingjing lantéra.
+
+“Tos ti mana, Son?”
+
+“Ti kandang Si Paser, Bah,” témbal Eson.
+
+“Sok, diuk heula sakeudeung,” ceuk bapana. “Kieu, Son,” ceuk Pa Yéyé. “Saenyana Abah ngarasa beurat nyaritakeunana. Tadi meureun Eson nyaho, jurutulis datang ka imah urang. Mani ngahajakeun ka dieuna ogé, cenah.”
+
+“Muhun. kami ogé nyaho ti Ema,” ceuk Eson. “Aya Naon kitu, Bah?”
+
+“Aya pasualan patali jeung mencek inguan manéh.”
+
+“Pasualan Naon, Bah? Naha ja kuari mah Si Paser tilok ngaranjah kebon, ja tilok dileupaskeun ka luar ti buruan,” ceuk Eson semu héran.
+
+“Lain éta maksud Mang Ulis mah.”
+
+“Ari kitu, kumaha atuh, Bah?” Eson nanya deui, bangun anu geus teu sabar, hayang meunang katerangan.
+
+Pa Yéyé teu buru-buru ngajawab. Atuh Eson beuki teu daék cicing.
+
+“Ringkesna mah kieu,” Pa Yéyé mimiti deui ngomong. “Eson meureun geus ngadéngé ti Bapa atawa Ibu Guru, yén mencek kaasup sato anu ditangtayungan ku undang-undang. Tah, sasatoan anu kitu éta teu meunang diganggu atawa diala. éta mah naha rék keur dahareun atawa ingueun. Lamun urang ngarempak éta aturan tangtu dihukum.”
+
+“Tapi pan, Bah, ti heula ogé urang mah teu ngahaja-haja ngala mencek. Kabeneran baé ragrag kana lombang di kebon urang. Nya ku urang terus ditéwak,” Imas milu nyarita.
+
+“Bener, ku Abah ogé dicaritakeun kitu ka Mang Ulis. Urang mah pan teu ngahaja-haja hayang ngingu mencek,” ceuk Pa Yéyé.
+
+“Mun kitu, atuh urang mah teu salah, Bah,” ceuk Eson.
+
+“Mémang enya, urang mah teu salah. Tapi, aya terusna ieu, Son. Urang geus nulungan Si Paser, terus diingu tepi ka gedé. Ieu tangtuna ogé hiji kahadéan. Kitu ceuk Mang Ulis ogé. Tapi, ku sabab éta sato téa ditangtayungan ku undang-undang, urang teu boga wewenang pikeun miarana.”
+
+“Jadi, kumaha atuh maksad Abah?”
+
+“Si Paser kudu dileupaskeun,” témbal bapana.
+
+“Atuh engké urang bakal kudu ngagantian karugian tatangga anu kebonna diranjah Si Paser,” ceuk Imas.
+
+“Maksud Abah mah dileupaskeun, lain dikencarkeun di jero lembur, tapi dileupaskeun ka jero leuweung,” ceuk Pa Yéyé.
+
+“Dileupaskeun ka leuweung, Bah?”
+
+“Enya, dileupaskeun deui ka leuweung Gunung Manglayang. Jadi, dileupaskeun deui ka lingkungan hirupna anu asli.”
+
+“Wah, entong atuh, Bah,” ceuk Eson.
+
+“Geus kabadé ku Abah ogé, manéh moal mikeun.”
+
+“Nya muhun atuh, Bah. Piraku Si Paser anu sakitu dipikanyaahna dileupaskeun deui ka leuweung? Karunya atuh, mangkaning dikukutna ogé ti anakna kénéh.”
+
+“Ari lebah karunya mah Abah ogé sarua baé, jeung héman deuih. Tapi, pan urang salah ceuk hukum lamun Si Paser terus dipiara,” ceuk Pa Yéyé.
+
+Eson ngahuleng, mikiran caritaan bapana.
+
+“Kuari mah los baé geura héés, bisi isuk kabeurangan.”
+
+Eson asup ka enggonna. Manéhna nangkarak bari neuteup lalangit. Di luar kadéngé sora jangkrik mani ngikrik. Teu daékeun reup héés, sakitu geus dipeureum-peureumkeun ogé. Caritaan bapana masih kénéh jadi pikiran manéhna. Eson ngarasa beurat lamun tepi ka papisah jeung Si Paser. Eson nyaaheun jasa kana mencek anu geus dikukut sakitu lilana. Jeung deuih, katénjona Si Paser ogé geus bisa ngarasakeun kanyaah dununganana.
+
+Lamun Si Paser dileupaskeun deui ka leuweung, naha kira-kirana bakal terus hirup? Tangtuna ogé Si Paser bakal ngarasa asing, sabab ti leuleutik dipiara di lembur. Lamun geus di leuweung mah, meureun Si Paser moal bogaeun kandang. Meureun engké bakal kahujanan. Jaba deuih di leuweung mah kudu néangan hakaneun sorangan. Tapi kading, ari ku hakaneun mah moal hésé. Di leuweung loba jukut jeung dangdaunan. Ngan baé, naha dijamin moal aya anu ngaganggu? Di leuweung mah tangtu loba musuhna Si Paser. Mungkin baé engkéna bakal ditekuk maung tutul, jaba cenah di leuweung béh jerona mah sok aya kénéh. Salian ti maung tutul, aya deuih musuhna, nyaéta ajag atawa oray sanca.
+
+Naha Si Paser bakal bisaeun ngéléhkeun musuh-musuhna? Eson tumanya dina jero haté.</div>
+
+  <div class="note"><b>Pituduh maca:</b> Tengetan saha baé palakuna, naon pasualan anu karandapan, iraha jeung di mana kajadian lumangsung, sarta kumaha pikiran Éson dina bagian ahir carita.</div>
+
+  <button class="primary" block onclick="beginGameQuestions()">Geus réngsé maca — Mimitian Tantangan →</button>
+
+</div>
+
+<div id="gameQuizArea" style="display:none">
+
+  <div class="navrow" id="gameLevelNav">
+
+   <span class="badge" id="level1">1 · Téma</span><span class="badge" id="level2">2 · Palaku</span><span class="badge" id="level3">3 · Galur</span><span class="badge" id="level4">4 · Latar & Sawangan</span><span class="badge" id="level5">5 · Amanat & Basa</span>
+
+  </div>
+
+  <span class="badge" id="gameRound">Tingkat 1 · Soal 1 ti 10</span>
+
+  <h3 id="gameLevelTitle" style="margin-top:12px;color:var(--wine)">Tingkat 1 – Ngabongkar Téma</h3>
+
+  <p class="small" id="gameLevelDesc">Panggihan gagasan utama tina sempalan.</p>
+
+  <div class="progress"><span id="gameBar"></span></div>
+
+  <h3 id="gameQuestion" style="margin-top:18px"></h3><div id="gameOptions"></div><div id="gameFeedback"></div>
+
+  <button class="primary" id="nextGame" style="display:none;margin-top:12px" onclick="nextGameQuestion()">Soal saterusna →</button>
+
+  <p class="small" id="gameScore">Skor: 0 / 100</p><button class="secondary" id="restartGame" onclick="startGame()" style="display:none">Baca deui sempalan</button>
+
+</div>
+
+ </div>
+
+ <div id="resultView" class="panel" style="display:none">
+
+  <h3>Hasil diajar</h3><p>Bagéan anu geus diréngsékeun:</p><p id="completedList" class="callout">Can aya bagéan anu diréngsékeun.</p><div class="progress"><span id="resultBar"></span></div><p class="small" id="resultPercent">Kamajuan 0%</p>
+
+  <h3>Skor pangluhurna</h3><div style="font-size:42px;font-weight:850;color:var(--wine)" id="resultScore">—</div><p class="small">Skor pangluhurna tina latihan jeung kaulinan.</p>
+
+  <button class="secondary" onclick="resetProgress()">Reset kamajuan dina browser ieu</button>
+
+ </div>
+
+</section>
+
+<footer class="footer">MPI NOVEL · IRMAL SUNDA · BASA SUNDA KELAS IX SMP</footer>
+
+</main>
+
+</div>
+
+<script>
+
+const $=id=>document.getElementById(id);
+
+
+// Integrasi pencatatan kunjungan MPI Novel ka Google Sheets.
+const VISITOR_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxKZ7xOqBHaptQ3rMJs_ta3V8D6YIo5c5Ekc8P__Fj_eMOlhLottJUEFa6V76OR4N28/exec';
+
+function getNovelDeviceId(){
+  let id = localStorage.getItem('mpiNovelDeviceId');
+  if(!id){
+    id = (window.crypto && crypto.randomUUID)
+      ? crypto.randomUUID()
+      : 'novel-' + Date.now() + '-' + Math.random().toString(36).slice(2);
+    localStorage.setItem('mpiNovelDeviceId', id);
+  }
+  return id;
+}
+
+function prepareVisitorForm(){
+  const savedName = localStorage.getItem('mpiNovelNama') || '';
+  const savedOrigin = localStorage.getItem('mpiNovelAsal') || '';
+  $('visitorName').value = savedName;
+  $('visitorOrigin').value = savedOrigin;
+
+  $('visitorForm').addEventListener('submit', async function(event){
+    event.preventDefault();
+
+    const nama = $('visitorName').value.trim();
+    const asal = $('visitorOrigin').value;
+    const errorBox = $('visitorError');
+    const submitButton = $('visitorSubmit');
+
+    if(!nama || !asal){
+      errorBox.textContent = 'Ngaran jeung asal kudu dieusian heula.';
+      return;
+    }
+
+    submitButton.disabled = true;
+    submitButton.textContent = 'Ngamuat...';
+    errorBox.textContent = '';
+
+    localStorage.setItem('mpiNovelNama', nama);
+    localStorage.setItem('mpiNovelAsal', asal);
+
+    const payload = {
+      mpi: 'NOVEL',
+      deviceId: getNovelDeviceId(),
+      nama: nama,
+      asal: asal
+    };
+
+    try{
+      // text/plain + no-cors avoids a browser preflight for Apps Script.
+      // The response is opaque; verify successful recording in the Sheet.
+      await fetch(VISITOR_SCRIPT_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: {'Content-Type':'text/plain;charset=utf-8'},
+        body: JSON.stringify(payload)
+      });
+      $('visitorGate').style.display = 'none';
+    }catch(error){
+      errorBox.textContent = 'Teu bisa nyambung ka server. Pariksa internét, tuluy cobaan deui.';
+      submitButton.disabled = false;
+      submitButton.textContent = 'Cobian deui';
+    }
+  });
+}
+
+
+
+const sections=['pangwanoh','wawasan','unsur','struktur','bedah'];
+
+let state={done:[],best:null};
+
+try{state={...state,...JSON.parse(localStorage.getItem('mpiNovelPatepung')||'{}')}}catch(e){}
+
+function save(){try{localStorage.setItem('mpiNovelPatepung',JSON.stringify(state))}catch(e){}updateStats()}
+
+function complete(id){if(!state.done.includes(id))state.done.push(id);save()}
+
+function openPage(id){document.querySelectorAll('.content').forEach(x=>x.classList.remove('active'));$(id).classList.add('active');window.scrollTo({top:0,behavior:'smooth'});if(id==='evaluasi'){showEval('quiz');if(!quizStarted)startQuiz()}updateStats()}
+
+function updateStats(){let n=sections.filter(id=>state.done.includes(id)).length,p=Math.min(100,Math.round(n/sections.length*100));$('doneCount').textContent=n+'/'+sections.length;$('progressPct').textContent=p+'%';$('progressLabel').textContent=p+'%';$('progressBar').style.width=p+'%';$('bestScore').textContent=state.best===null?'—':state.best+'%'}
+
+function showEval(which){['quiz','game','result'].forEach(x=>{$(x+'View').style.display=x===which?'block':'none';$('tab'+x[0].toUpperCase()+x.slice(1)).classList.toggle('active',x===which)});if(which==='result')renderResults();if(which==='game'&&!gameStarted)startGame()}
+
+function renderResults(){let names={pangwanoh:'Pangwanoh',wawasan:'Wawasan Novel',unsur:'Unsur Novel',struktur:'Struktur jeung Basa',bedah:'Bedah Novel'};let finished=sections.filter(x=>state.done.includes(x));$('completedList').textContent=finished.length?finished.map(x=>names[x]).join(' · '):'Can aya bagéan anu diréngsékeun.';let p=Math.min(100,Math.round(finished.length/sections.length*100));$('resultBar').style.width=p+'%';$('resultPercent').textContent='Kamajuan '+p+'%';$('resultScore').textContent=state.best===null?'—':state.best+'%'}
+
+function resetProgress(){if(confirm('Yakin rék mupus sakabéh kamajuan diajar dina browser ieu?')){state={done:[],best:null};save();renderResults()}}
+
+const questions=[
+
+ {q:'Dumasar kana ringkesan carita, téma utama Patepung di Bandung nyaéta ...',o:['Perjuangan hirup jeung usaha ngarobah nasib','Kahirupan karajaan jeung peperangan','Pasualan asmara rumaja','Petualangan di laut'],a:0,e:'Lalakon Kondi museur kana kasusah kulawarga, usaha néangan lanceuk, jeung kahayang pikeun ngarobah kahirupan.'},
+
+ {q:'Kondi disebut palaku utama sabab ...',o:['Manéhna tokoh anu pangkolotna','Sakabéh kajadian utama museur kana lalakon jeung pangalamanana','Manéhna ngan muncul dina ahir carita','Manéhna jadi tokoh anu ngalawan sakabéh tokoh séjén'],a:1,e:'Palaku utama nyaéta tokoh anu jadi puseur lalakon jeung pangmindengna dicaritakeun.'},
+
+ {q:'Dumasar kana kalungguhanana, Mang Mahmud kaasup ...',o:['Palaku utama','Palaku tambahan','Antagonis utama','Narator jalma kahiji'],a:1,e:'Mang Mahmud ngarojong lalakon Kondi, tapi lain puseur utama carita.'},
+
+ {q:'Naon bédana palaku utama jeung protagonis?',o:['Duanana pasti hartina sarua','Palaku utama dumasar kana puseur lalakon, protagonis dumasar kana peran dina konflik','Palaku utama sok jahat, protagonis sok kolot','Protagonis ngan aya dina carita pondok'],a:1,e:'Palaku utama/tambahan nuduhkeun pentingna tokoh dina carita, ari protagonis/antagonis nuduhkeun peranna dina konflik.'},
+
+ {q:'Kang Odong kungsi ngalakukeun kajahatan, laju insap sarta robah kahirupanana. Ieu nuduhkeun yén Kang Odong bisa dianalisis minangka ...',o:['Palaku basajan','Palaku kompleks','Palaku anu teu boga watek','Palaku latar'],a:1,e:'Parobahan jeung sababaraha sisi watekna ngajadikeun Kang Odong bisa dianalisis minangka palaku kompleks.'},
+
+ {q:'Dumasar kana runtuyan dina ringkesan, galur Patepung di Bandung bisa dianalisis minangka ...',o:['Galur mundur','Galur campuran','Galur maju','Teu boga galur'],a:2,e:'Ringkesan nyaritakeun kajadian sacara ngaruntuy ti kahirupan Kondi di lembur nepi ka patepung deui jeung lanceukna.'},
+
+ {q:'Carita dimimitian ku Kondi geus aya di Bandung, tuluy manéhna nginget deui kajadian mangsa leutikna di lembur. Ieu conto ...',o:['Galur maju','Galur mundur','Galur campuran','Resolusi'],a:1,e:'Carita balik nyaritakeun kajadian anu lumangsung saméméhna disebut galur mundur.'},
+
+ {q:'Dina sempalan, kalimah “Kira-kira tabuh dalapan, mobil geus cunduk ka Pasar Ciroyom” nuduhkeun ...',o:['Latar waktu jeung tempat','Latar suasana wungkul','Watek tokoh','Amanat langsung'],a:0,e:'“Tabuh dalapan” nuduhkeun waktu, ari “Pasar Ciroyom” nuduhkeun tempat.'},
+
+ {q:'Kulawarga Kondi anu keur nyanghareupan kasusah ékonomi ngawangun latar suasana ...',o:['Gumbira jeung heureuy','Prihatin jeung nalangsa','Tegang lantaran perang','Pinuh ku kaméwahan'],a:1,e:'Kasusah ékonomi jeung pasualan kulawarga ngawangun suasana prihatin.'},
+
+ {q:'Dina sempalan “Kira-kira tabuh lima, kuring geus anjeucleu dina mobil”, kecap “kuring” nuduhkeun puseur sawangan ...',o:['Jalma kahiji','Jalma kadua','Jalma katilu kawates','Jalma katilu mahatahu'],a:0,e:'Kecap “kuring” nuduhkeun panyatur jalma kahiji anu nyaritakeun pangalamanana.'},
+
+ {q:'Kalimah “Kondi indit ka Bandung pikeun néangan lanceukna” ngagunakeun puseur sawangan jalma katilu sabab ...',o:['Panyatur nyebut tokoh ku ngaranna','Panyatur nyebut dirina “kuring”','Tokoh keur nyarita langsung','Caritana henteu boga tokoh'],a:0,e:'Panyatur aya di luar carita sarta nyebut tokoh ku ngaranna.'},
+
+ {q:'Pesen yén urang kudu sabar, daék usaha, jeung henteu gampang nyerah kaasup ...',o:['Téma','Latar','Amanat','Galur'],a:2,e:'Amanat nyaéta pesen atawa piwuruk anu bisa dicokot tina lalakon.'},
+
+ {q:'Naon bédana téma jeung amanat?',o:['Téma nyaéta tempat, amanat nyaéta waktu','Téma gagasan utama carita, amanat pesen anu ditepikeun','Téma nyaéta palaku, amanat nyaéta galur','Téma jeung amanat teu aya bédana'],a:1,e:'Téma mangrupa gagasan utama anu jadi dasar carita, ari amanat mangrupa pesen atawa piwurukna.'},
+
+ {q:'Dina conto ilustrasi “Angin peuting ngaharéwos di sisi pasar”, gaya basa anu dipaké nyaéta ...',o:['Hiperbola','Ironi','Personifikasi','Simile'],a:2,e:'Personifikasi méré kalakuan manusa (“ngaharéwos”) ka barang atawa kaayaan (angin). Ieu conto ilustrasi, lain cutatan novel.'},
+
+ {q:'Dina sempalan novel, katerangan yén pasar tetep ramé sanajan geus peuting utamana dipaké pikeun ...',o:['Ngagambarkeun kaayaan jeung suasana pasar','Némbongkeun amanat langsung','Ngarobah puseur sawangan','Ngawanohkeun palaku antagonis'],a:0,e:'Katerangan éta ngagambarkeun kaayaan pasar, ku kituna kaasup déskripsi ngeunaan latar jeung suasana.'}
+
+];
+
+let quizIndex=0,quizChoice=null,quizLock=false,quizScore=0,quizStarted=false;
+
+function startQuiz(){quizStarted=true;quizIndex=0;quizChoice=null;quizLock=false;quizScore=0;$('quizNext').onclick=submitQuiz;renderQuiz()}
+
+function renderQuiz(){let q=questions[quizIndex];$('quizNum').textContent=`Soal ${quizIndex+1} ti ${questions.length}`;$('quizProgress').textContent=`${quizIndex} ti ${questions.length} réngsé`;$('quizBar').style.width=(quizIndex/questions.length*100)+'%';$('quizQuestion').textContent=q.q;$('quizOptions').innerHTML='';$('quizFeedback').innerHTML='';$('quizNext').textContent='Pariksa jawaban';quizChoice=null;quizLock=false;q.o.forEach((v,i)=>{let b=document.createElement('button');b.className='quiz-option';b.textContent=String.fromCharCode(65+i)+'. '+v;b.onclick=()=>{if(quizLock)return;quizChoice=i;document.querySelectorAll('#quizOptions button').forEach(x=>x.classList.remove('selected'));b.classList.add('selected')};$('quizOptions').append(b)})}
+
+function submitQuiz(){if(quizLock){if(quizIndex<questions.length-1){quizIndex++;renderQuiz()}else{finishQuiz()}return}if(quizChoice===null){$('quizFeedback').innerHTML='<div class="feedback bad">Pilih heula salah sahiji jawaban.</div>';return}quizLock=true;let q=questions[quizIndex],ok=quizChoice===q.a;if(ok)quizScore++;$('quizFeedback').innerHTML=`<div class="feedback ${ok?'good':'bad'}"><b>${ok?'Bener!':'Can bener.'}</b> ${q.e}</div>`;$('quizNext').textContent=quizIndex===questions.length-1?'Tingali hasil':'Soal saterusna →'}
+
+function finishQuiz(){let score=Math.round(quizScore/questions.length*100);state.best=Math.max(state.best??0,score);complete('evaluasi');save();$('quizNum').textContent='Evaluasi réngsé';$('quizProgress').textContent=`${quizScore} tina ${questions.length} jawaban leres`;$('quizBar').style.width='100%';$('quizQuestion').textContent=`Skor anjeun: ${score}/100`;$('quizOptions').innerHTML='';$('quizFeedback').innerHTML=`<div class="feedback ${score>=70?'good':'bad'}">${score>=80?'Hebat! Pamahaman anjeun geus hadé.':score>=60?'Hadé, tapi masih perlu latihan deui.':'Hayu baca deui materi, tuluy cobaan deui.'}</div>`;$('quizNext').textContent='Ulang evaluasi';$('quizNext').onclick=startQuiz;$('tabResult').style.display='inline-block'}
+
+const gameLevels=[
+
+ {title:'Tingkat 1 – Ngabongkar Téma',desc:'Panggihan gagasan utama tina sempalan carita.',start:0,end:1},
+
+ {title:'Tingkat 2 – Ngulik Palaku',desc:'Talungtik palaku, kalungguhan, jeung watekna.',start:2,end:3},
+
+ {title:'Tingkat 3 – Ngalacak Galur',desc:'Maham runtuyan kajadian jeung konflik carita.',start:4,end:5},
+
+ {title:'Tingkat 4 – Ngabedah Latar jeung Sawangan',desc:'Panggihan tempat, waktu, suasana, jeung saha anu nyaritakeun.',start:6,end:7},
+
+ {title:'Tingkat 5 – Muka Amanat jeung Basa',desc:'Tafsirkeun amanat sarta tengetan cara pangarang ngawangun carita.',start:8,end:9}
+
+];
+
+const gameQuestions=[
+
+ {q:'Naon gagasan utama anu pangmerenahna pikeun sempalan Si Paser?',o:['Kanyaah Éson ka Si Paser jeung pasualan kudu ngaleupaskeun sato anu ditangtayungan','Kahayang Éson pikeun moro sato di leuweung','Pasualan dagang di pasar désa','Paséa antara Pa Yéyé jeung jurutulis ngeunaan kebon'],a:0,e:'Sempalan museur kana kanyaah Éson ka Si Paser, laju muncul pasualan hukum anu ngajurung Si Paser kudu dileupaskeun deui ka habitatna.'},
+
+ {q:'Pasualan utama anu ngagerakkeun kajadian dina sempalan nyaéta ...',o:['Si Paser teu daék dahar','Pa Yéyé kudu mutuskeun antara ngajaga Si Paser atawa nurut kana aturan pikeun ngaleupaskeunana','Éson hayang indit ka Bandung','Si Buntung leungit ti imah'],a:1,e:'Jurutulis nepikeun yén mencek kaasup sato ditangtayungan, ku kituna teu meunang dipiara tanpa idin. Ieu jadi konflik utama kulawarga.'},
+
+ {q:'Saha tokoh anu panglobana jadi puseur pasualan jeung rasa dina sempalan?',o:['Jurutulis désa','Si Buntung','Éson','Pa Lurah'],a:2,e:'Éson kacida nyaahna ka Si Paser. Réaksi jeung pikiran Éson sanggeus nyaho yén Si Paser kudu dileupaskeun jadi puseur bagian ahir sempalan.'},
+
+ {q:'Sipat Éson anu katémbong nalika ngadéngé Si Paser kudu dileupaskeun nyaéta ...',o:['Teu paduli jeung cueut','Nyaah, hariwang, jeung beurat haté','Ambek ka Si Paser','Hayang ngajual Si Paser'],a:1,e:'Éson nolak sabab nyaah pisan ka Si Paser, laju ngahuleng jeung mikiran naha mencek éta bisa hirup deui di leuweung.'},
+
+ {q:'Kajadian mana anu lumangsung pangheulana dina runtuyan sempalan?',o:['Pa Yéyé ngajelaskeun aturan ka Éson','Éson ngalamun peuting mikiran Si Paser','Si Paser mimiti bijil tanduk cagak jeung sihungna','Jurutulis nepikeun amanat Pa Lurah'],a:2,e:'Sempalan dimimitian ku katerangan yén Si Paser geus kira-kira umur sataun sarta tanduk jeung sihungna mimiti bijil.'},
+
+ {q:'Kajadian anu jadi puncak pasualan pikeun Éson dina sempalan nyaéta ...',o:['Si Paser éléh ku Si Buntung','Pa Yéyé nepikeun yén Si Paser kudu dileupaskeun ka leuweung','Éson indit ka kandang','Jurutulis datang bari nanyakeun kebon'],a:1,e:'Kaputusan pikeun ngaleupaskeun Si Paser ka habitat aslina nyababkeun konflik batin anu karasa ku Éson.'},
+
+ {q:'Dina kalimah “Peutingna, Pa Yéyé ngageroan Éson”, kecap “peutingna” nuduhkeun latar ...',o:['Tempat','Waktu','Suasana','Sosial'],a:1,e:'Kecap “peutingna” nuduhkeun iraha kajadian lumangsung, nyaéta latar waktu.'},
+
+ {q:'Dina bagian ahir, Éson nangkarak, neuteup lalangit, jeung teu bisa saré lantaran mikiran Si Paser. Suasana anu karasa nyaéta ...',o:['Gumbira jeung reueus','Hariwang, bingung, jeung sedih','Ramé jeung pikaseurieun','Sieun ku jurutulis'],a:1,e:'Pikiran Éson anu terus ngagolak sarta beurat haté rék papisah jeung Si Paser ngawangun suasana hariwang jeung sedih.'},
+
+ {q:'Sempalan ieu lolobana dicaritakeun ku panyatur anu nyebut tokoh “Éson”, “Pa Yéyé”, jeung “Si Paser”. Ieu nuduhkeun puseur sawangan ...',o:['Jalma kahiji','Jalma kadua','Jalma katilu','Paguneman wungkul tanpa narator'],a:2,e:'Panyatur nyaritakeun tokoh ku ngaranna sarta aya di luar kajadian, jadi ieu ngagunakeun puseur sawangan jalma katilu.'},
+
+ {q:'Piwuruk anu pangmerenahna dicokot tina pasualan Si Paser nyaéta ...',o:['Sato liar hadéna salawasna dipiara di imah','Kanyaah ka sasatoan kudu dibarengan ku tanggung jawab jeung hormat kana aturan sarta habitatna','Aturan teu kudu diturut lamun niat urang hadé','Sato anu geus jinak moal bisa hirup di alam'],a:1,e:'Carita némbongkeun yén niat nulungan jeung nyaah ka sasatoan kudu dibarengan ku pamahaman kana aturan jeung kabutuhan habitat aslina.'}
+
+];
+
+let gameIndex=0,gamePoints=0,gameLocked=false,gameStarted=false;
+
+function updateGameLevels(){gameLevels.forEach((lv,i)=>{let el=$('level'+(i+1));if(!el)return;el.style.background=gameIndex>=lv.start&&gameIndex<=lv.end?'var(--wine)':(gameIndex>lv.end?'#e5eee7':'#f3e6df');el.style.color=gameIndex>=lv.start&&gameIndex<=lv.end?'white':(gameIndex>lv.end?'#41624e':'var(--wine)')})}
+
+function startGame(){gameStarted=true;gameIndex=0;gamePoints=0;$('gameReader').style.display='block';$('gameQuizArea').style.display='none';$('gameRound').textContent='Tingkat 1 · Soal 1 ti '+gameQuestions.length;$('gameLevelTitle').textContent='Tantangan Bedah Novel';$('gameLevelDesc').textContent='Baca sempalan Si Paser heula saméméh ngajawab soal.';$('gameBar').style.width='0%';$('gameQuestion').textContent='';$('gameOptions').innerHTML='';$('gameFeedback').innerHTML='';$('nextGame').style.display='none';$('restartGame').style.display='none';$('gameScore').textContent='Skor: 0 / 100';}
+
+function beginGameQuestions(){gameIndex=0;gamePoints=0;$('gameReader').style.display='none';$('gameQuizArea').style.display='block';renderGame();}
+
+function renderGame(){
+
+ let q=gameQuestions[gameIndex],lv=gameLevels.find(x=>gameIndex>=x.start&&gameIndex<=x.end),levelNo=gameLevels.indexOf(lv)+1;
+
+ $('gameRound').textContent=`Tingkat ${levelNo} · Soal ${gameIndex+1} ti ${gameQuestions.length}`;
+
+ $('gameLevelTitle').textContent=lv.title;$('gameLevelDesc').textContent=lv.desc;
+
+ $('gameBar').style.width=(gameIndex/gameQuestions.length*100)+'%';
+
+ $('gameQuestion').textContent=q.q;$('gameOptions').innerHTML='';$('gameFeedback').innerHTML='';
+
+ $('nextGame').style.display='none';$('restartGame').style.display='none';
+
+ $('gameScore').textContent='Skor: '+gamePoints+' / 100';gameLocked=false;updateGameLevels();
+
+ q.o.forEach((v,i)=>{let b=document.createElement('button');b.className='quiz-option';b.textContent=String.fromCharCode(65+i)+'. '+v;b.onclick=()=>{if(gameLocked)return;gameLocked=true;let ok=i===q.a;if(ok)gamePoints+=10;$('gameFeedback').innerHTML=`<div class="feedback ${ok?'good':'bad'}"><b>${ok?'Bener! +10 poin':'Can bener.'}</b> ${q.e}</div>`;$('gameScore').textContent='Skor: '+gamePoints+' / 100';$('nextGame').style.display='inline-block';$('nextGame').textContent=gameIndex===gameQuestions.length-1?'Tingali hasil bedah novel':'Soal saterusna →';b.classList.add('selected')};$('gameOptions').append(b)})
+
+}
+
+function nextGameQuestion(){
+
+ if(gameIndex<gameQuestions.length-1){gameIndex++;renderGame()}
+
+ else{
+
+  state.best=Math.max(state.best??0,gamePoints);complete('evaluasi');$('gameBar').style.width='100%';
+
+  $('gameRound').textContent='Tantangan réngsé';$('gameLevelTitle').textContent='Hasil Tantangan Bedah Novel';
+
+  $('gameLevelDesc').textContent='Manéh geus ngaréngsékeun lima tingkat analisis sempalan Si Paser.';
+
+  $('gameQuestion').textContent=`Skor ahir: ${gamePoints} / 100`;
+
+  $('gameOptions').innerHTML='';
+
+  let msg=gamePoints>=90?'Luar biasa! Manéh geus jadi Ahli Bedah Novel.':gamePoints>=70?'Hadé! Manéh geus bisa nganalisis lolobana unsur carita.':'Terus latihan! Baca deui sempalan jeung pedaranana.';
+
+  $('gameFeedback').innerHTML=`<div class="feedback ${gamePoints>=70?'good':'bad'}"><b>${gamePoints>=90?'Ahli Sastra':gamePoints>=70?'Panalungtik Muda':'Terus Latihan'}</b><br>${msg}<br><br>Jawaban bener: ${gamePoints/10} tina 10 soal.</div>`;
+
+  $('nextGame').style.display='none';$('restartGame').style.display='inline-block';$('restartGame').textContent='Baca deui sempalan';save();updateGameLevels();
+
+ }
+
+}
+
+updateStats();
+prepareVisitorForm();
+
+</script>
+
+</body>
+
+</html>
